@@ -9,5 +9,4 @@ result = {
     'multiply': a * b,
     'divide': a//b
 }
-
 print(result[op])

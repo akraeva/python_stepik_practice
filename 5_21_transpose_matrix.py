@@ -1,6 +1,5 @@
 # 5.21 Transpose matrix
 
-
 n, m = [int(i) for i in input().split()]
 a = []
 for i in range(n):
