@@ -6,7 +6,8 @@ abc = {'1': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14}
 def rank(hand):
     same_suits = len([True for i in hand if i[-1] == hand[0][-1]]) == 5
     if same_suits:
-        royal_flush = len([True for i in hand if int(i[0]) in range(10, 15)]) == 5
+        royal_flush = len([True for i in hand
+                           if int(i[0]) in range(10, 15)]) == 5
         if royal_flush:
             return ('Royal Flush')
         straight_flush = len([True for i in range(len(hand)-1)
@@ -38,10 +39,12 @@ cards = sorted([[(abc[i[0]] if i[0] in abc else int(i[0])), i[-1]]
                 for i in input().split()])
 print(rank(cards))
 
-with open('9_2_poker_hand_tests.txt') as tests:
-    for line in tests:
-        test = [i for i in line.strip().split('-')]
-        cards = sorted([[(abc[i[0]] if i[0] in abc
-                          else int(i[0])), i[-1]] for i in test[1].split()])
-        error_mes = f'{test[0]} - FALSE: {test[1]} - {test[2]} INPUT: {rank(cards)}'
-        print(f'{test[0]} - True' if rank(cards) == test[2] else error_mes)
+
+def rank_test():
+    with open('9_2_poker_hand_tests.txt') as tests:
+        for line in tests:
+            test = [i for i in line.strip().split('-')]
+            cards = sorted([[(abc[i[0]] if i[0] in abc
+                            else int(i[0])), i[-1]] for i in test[1].split()])
+            er_mes = f'{test[0]}: FALSE: {test[1]} - {test[2]} / {rank(cards)}'
+            print(f'{test[0]}: True!' if rank(cards) == test[2] else er_mes)
